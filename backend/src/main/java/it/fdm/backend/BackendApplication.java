@@ -3,6 +3,8 @@ package it.fdm.backend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import it.fdm.backend.services.MailService;
+
 @SpringBootApplication
 public class BackendApplication {
 
