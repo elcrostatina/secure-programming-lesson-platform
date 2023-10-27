@@ -1,5 +1,7 @@
 package it.fdm.backend.rest;
 
+import it.fdm.backend.dto.EntrypointTokenDto;
+import it.fdm.backend.dto.PasswordTokenDto;
 import it.fdm.backend.dto.ValidateTokenDto;
 import it.fdm.backend.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +23,11 @@ public class TokenController {
     @CrossOrigin(origins = "*")
     public String create(@RequestBody ValidateTokenDto params) {
         return tokenService.createToken(params.getLocalName(), params.getDomain());
+    }
+
+    @PostMapping("/validate")
+    @CrossOrigin(origins = "*")
+    public PasswordTokenDto create(@RequestBody EntrypointTokenDto params) {
+        return tokenService.validateToken(params.getToken(), params.getId());
     }
 }

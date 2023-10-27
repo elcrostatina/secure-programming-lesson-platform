@@ -15,7 +15,7 @@ import java.util.UUID;
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    protected UUID id;
+    protected UUID id = UUID.randomUUID();
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
