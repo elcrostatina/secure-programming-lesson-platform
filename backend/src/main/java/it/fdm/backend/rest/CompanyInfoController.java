@@ -2,7 +2,6 @@ package it.fdm.backend.rest;
 
 import it.fdm.backend.services.CompanyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,10 +15,5 @@ public class CompanyInfoController {
     @Autowired
     public CompanyInfoController(CompanyInfoService companyInfoService) {
         this.companyInfoService = companyInfoService;
-    }
-
-    @PostMapping()
-    public void create() {
-        companyInfoService.createCompanyInfo();
     }
 }

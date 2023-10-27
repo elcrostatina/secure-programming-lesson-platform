@@ -19,7 +19,7 @@ public class CompanyInfoService {
         this.companyInfoRepository = companyInfoRepository;
         this.domainRepository = domainRepository;
     }
-
+/*
     public void createCompanyInfo() {
         Domain domain = new Domain();
         domain.setName("fdm.it");
@@ -31,7 +31,7 @@ public class CompanyInfoService {
         companyInfoRepository.save(companyInfo);
         domainRepository.save(domain);
     }
-
+*/
     public List<CompanyInfo> getCompanyInfo() {
         return companyInfoRepository.findAll();
     }
