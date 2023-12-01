@@ -1,5 +1,6 @@
 package it.fdm.backend.entities;
 
+import java.util.List;
 import java.util.UUID;
 
 import it.fdm.backend.enums.Operation;
@@ -22,6 +23,6 @@ public class Privilege extends BaseEntity {
 	private UUID videoId;
 
 	@Column(name = "operation")
-	private Operation operation;
+	private List<Operation> operation;
 
 }

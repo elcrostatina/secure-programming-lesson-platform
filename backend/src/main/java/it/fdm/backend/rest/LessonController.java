@@ -1,5 +1,8 @@
 package it.fdm.backend.rest;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
+import it.fdm.backend.dto.VideoLessonDto;
+import it.fdm.backend.services.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,33 +17,23 @@ import it.fdm.backend.dto.ValidateTokenDto;
 import it.fdm.backend.services.JwtService;
 import it.fdm.backend.services.TokenService;
 
+import java.util.UUID;
+
 @RestController()
 @RequestMapping("/lesson")
 public class LessonController {
-	
-    private final TokenService tokenService;
-    
+
     @Autowired
     private JwtService jwtService;
 
     @Autowired
-    public LessonController(TokenService tokenService) {
-        this.tokenService = tokenService;
-    }
+    private LessonService lessonService;
     
     @GetMapping("/{videoId}/")
     @CrossOrigin(origins = "*")
-    public String create(@PathVariable String videoId, @RequestHeader RequestHeader req) {
-    	
-    
-        
-    	//jwtService.validateAndReadJwt("tokenId");
-    	
-    	return null;
-    	//return tokenService.createToken(params.getLocalName(), params.getDomain());
+    public VideoLessonDto create(@PathVariable UUID videoId, @RequestHeader(value="Authorization") String authorizationHeader) {
+        DecodedJWT validateTokenDto = jwtService.validateAndReadJwt(authorizationHeader);
+        return lessonService.getLessonVideo(videoId, validateTokenDto.getClaim("userId").as(UUID.class));
     }
-    
-    
-    // jwt e il videoId
 
 }
