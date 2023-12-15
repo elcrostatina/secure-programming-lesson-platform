@@ -1,5 +1,6 @@
 package it.fdm.backend.rest;
 
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import it.fdm.backend.dto.VideoLessonDto;
 import it.fdm.backend.services.LessonService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.fdm.backend.dto.ValidateTokenDto;
 import it.fdm.backend.services.JwtService;
 import it.fdm.backend.services.TokenService;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.util.UUID;
 
@@ -31,7 +33,7 @@ public class LessonController {
     
     @GetMapping("/{videoId}/")
     @CrossOrigin(origins = "*")
-    public VideoLessonDto create(@PathVariable UUID videoId, @RequestHeader(value="Authorization") String authorizationHeader) {
+    public StreamingResponseBody create(@PathVariable UUID videoId, @RequestHeader(value="Authorization") String authorizationHeader) {
         DecodedJWT validateTokenDto = jwtService.validateAndReadJwt(authorizationHeader);
         return lessonService.getLessonVideo(videoId, validateTokenDto.getClaim("userId").as(UUID.class));
     }
