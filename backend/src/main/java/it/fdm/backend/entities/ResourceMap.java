@@ -13,4 +13,8 @@ public class ResourceMap extends BaseEntity {
 	@Column(name = "object_name")
 	private String objectName;
 
+	@Column(name = "bucket_name")
+	private String bucketName;
+
+
 }
